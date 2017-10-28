@@ -77,6 +77,43 @@ class Engine
 		$data = filter_input_array($type, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		return $data;
 	}
+	public function select($table,$param="*")
+	{
+		try {
+			$res=$this->db->prepare("SELECT $param FROM $table");
+			$res->execute();
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+		return $res;
+	}
+	public function insert($table,$param)
+	{
+		try {
+			$query=$this->db->prepare("INSERT INTO $table VALUES($param)");
+			$query->execute();
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	}
+	public function update($table,$param)
+	{
+		try {
+			$res=$this->db->prepare("UPDATE $table SET $param");
+			$res->execute();
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	}
+	public function delete($table)
+	{
+		try {
+			$res=$this->db->prepare("DELETE FROM $table");
+			$res->execute();
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	}
 }
 $eng = new Engine();
 ?>

@@ -14,7 +14,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" class="form-horizontal" role="form" action="pages/category/item/machine.php?action=add">
+            <form method="post" class="form-horizontal" role="form" action="pages/crud/item/machine.php?action=add">
               <div class="box-body">
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">Name</label>

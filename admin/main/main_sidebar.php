@@ -7,7 +7,7 @@
     </div>
     <div class="pull-left info">
       <p>Alexander Pierce</p>
-      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      <a href="?page=profile"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>
   <!-- search form -->
@@ -25,7 +25,7 @@
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li class="active treevie">
-      <a href="#">
+      <a href="index.php">
         <i class="fa fa-home"></i> <span>Home</span>
       </a>
     </li>
@@ -34,13 +34,41 @@
         <i class="fa fa-tags"></i>
         <span>Category</span>
         <span class="pull-right-container">
-          <span class="label label-primary pull-right">4</span>
+          <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-        <li><a href="?page=category/item/index"><i class="fa fa-motorcycle"></i> transport</a></li>
+        <li class="treeview"><a href=""><i class="fa fa-cubes"></i>
+          <span>
+            Items
+          </span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+          <ul class="treeview-menu">
+            <?php
+              $res=$eng->select("category");
+              while ($data=$res->fetch()) {
+            ?>
+            <li><a href="?page=crud/item/index&category=<?=$data['name']?>"><i class="fa fa-circle-o"></i>  <?=$data['name']?></a></li>
+            <?php
+              }
+            ?>
+            <li><a href="?page=crud/item/create"><i class="fa fa-plus"></i><span> Add New Item</span></a></li>
+          </ul>
+        </li>
       </ul>
+    </li>
+    <li class="treevie">
+      <a href="?page=transfer">
+        <i class="fa fa-credit-card"></i> <span>Transfer</span>
+      </a>
+    </li>
+    <li class="treevie">
+      <a href="?page=user">
+        <i class="fa fa-user"></i> <span>User</span>
+      </a>
     </li>
     <li class="treeview">
       <a href="#">

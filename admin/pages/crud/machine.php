@@ -10,7 +10,7 @@
 			)";
 		$eng->execute($q,null);
 		$java->alert("Data Tersimpan!!");
-		$java->redirect("../../../index.php?page=category/item/index");
+		$java->redirect("../../../index.php?page=crud/item/index");
 	}
 	if ($action == "up") {
 

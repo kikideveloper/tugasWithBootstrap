@@ -1,10 +1,27 @@
+<?php
+	$i=1;
+	$data=$java->get("category","");
+	if ($data=="") {
+		$q=$eng->select("category");
+		while ($row=$q->fetch()) {
+			if ($data==$row['name']) {
+				$res=$eng->select("item where id_category=$row['id_category']");
+				$show=$res->fetch();
+			}
+		}
+	}else{
+		$java->alert("Category not found!!");
+		$java->redirect("index.php");
+	}
+
+?>
 <section class="content-header">
   <h1>
-    Category
+    Item
     <small>Home</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="?page=category/item/create"><i class="fa fa-plus"></i> Add New</a></li>
+    <li><a href="?page=crud/item/create"><i class="fa fa-plus"></i> Add New</a></li>
   </ol>
 </section>
 <section class="content">
@@ -41,37 +58,32 @@
           			<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
             			<thead>
             				<tr role="row">
-            					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 182px;">
-            						Rendering engine
+            					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 10%;">
+            						No.
           						</th>
-            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 224px;">
-            						Browser
+            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 70%;">
+            						Browser	
           						</th>
-            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">
-            						Platform(s)
+          						<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Browser: activate to sort column ascending" style="width: 20%;">
+            						Action
           						</th>
-          						<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 156px;">
-          							Engine version
-        							</th>
-          						<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">
-          							CSS grade
-        							</th>
-      							</tr>
+  							</tr>
             			</thead>
             			<tbody>
-			            <?php
-			            	$i=1;
-			            	$q="SELECT * FROM item";
-			            	$data = $eng->getResult($q,null);
-			            	foreach ($data as $itm) {
-			            	?>
 				            <tr role="row" class="odd">
 				              <td><?=$i++?></td>
-				              <td class="sorting_1"><?=$itm["name"]?></td>
+				              <td class="sorting_1"><?=$show["name"]?></td>
+				              <td class="sorting_1">
+				              	<a href="?page=crud/item/update&id=<?=$itm['id_category']?>">
+				              		<i class="fa fa-edit"></i><span> Edit</span>
+				              	</a>
+				              </td>
+				              <td class="sorting_1">
+				              	<a href="pages/crud/item/machine.php?action=delete&id=<?=$itm['id_category']?>">
+				              		<i class="fa fa-close"></i><span> Delete</span>
+				              	</a>
+				              </td>
 				            </tr>
-				           <?php
-			            	}
-				           ?>
          			    </tbody>
 			          </table>
 			        </div>
