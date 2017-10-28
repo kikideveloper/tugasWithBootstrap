@@ -1,5 +1,4 @@
 <?php
-include 'lib/javascript.php';
 $id=$java->get("id","");
 if ($id!="") {
 	$q=$eng->select("category where id_category ='$id'");
@@ -22,7 +21,7 @@ if ($id!="") {
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" class="form-horizontal" role="form" action="pages/crud/item/machine.php?action=up">
+            <form method="post" class="form-horizontal" role="form" action="pages/crud/item/machine.php?action=add">
               <div class="box-body">
                 <div class="form-group">
                 <input type="hidden" name="id" value="<?=$data['id_category']?>">

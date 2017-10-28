@@ -35,3 +35,17 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script type="text/javascript">
+	//Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+    function PreviewImage() {
+var oFReader = new FileReader();
+oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+oFReader.onload = function (oFREvent)
+ {
+    document.getElementById("uploadPreview").src = oFREvent.target.result;
+};
+};
+</script>
