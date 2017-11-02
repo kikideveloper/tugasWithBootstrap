@@ -1,11 +1,12 @@
 <?php
+session_start();
+extract($_POST);
 $action = isset($_GET["action"])?$_GET["action"]:"";
 if ($action) {
-	$id = isset($_GET["id_item"])?$_GET["id_item"]:"";
 	switch ($action) {
 		case 'add':
-			$amount = isset($_GET["amount"])?$_GET["amount"]:0;
-			if (!empty($_SESSION["cart"][$id])) {
+			if (!empty($_SESSION["cart"][$id_item])) {
+				$val = array();
 				$_SESSION["cart"][$id] += $amount;
 			}else {
 				$_SESSION["cart"][$id] = $amount;
@@ -13,7 +14,7 @@ if ($action) {
 			break;
 		case 'up':
 			if (!empty($_SESSION["cart"])) {
-				$
+				$amount = isset($_POST['amount'])?$_POST['amount']:"";
 			}
 			break;
 		case 'del':

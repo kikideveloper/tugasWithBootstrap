@@ -1,148 +1,184 @@
 <?php
 	$i=1;
-	$data=$java->get("category","");
-	if ($data=="") {
-		$q=$eng->select("category");
-		while ($row=$q->fetch()) {
-			if ($data==$row['name']) {
-				$res=$eng->select("item where id_category=$row['id_category']");
-				$show=$res->fetch();
-			}
-		}
-	}else{
-		$java->alert("Category not found!!");
-		$java->redirect("index.php");
-	}
-
+	// $data=$java->get("category","");
+	// "where id_category=$row['id_category']";
+	// if ($data=="") {
+		// $q=$eng->select("category");
+		// while ($row=$q->fetch()) {
+			// if ($data==$row['name']) {
+				// $res=$eng->select("item");
+				// ;
+					# code...
+			// }
+		// }
+	// }else{
+		// $java->alert("Category not found!!");
+		// $java->redirect("index.php");
+	// }
+	$res=$eng->query("SELECT * FROM item I,category C,unit U WHERE I.id_category=C.id_category, I.id_unit=U.id_unit");
 ?>
 <section class="content-header">
-  <h1>
-    Item
-    <small>Home</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="?page=crud/item/create"><i class="fa fa-plus"></i> Add New</a></li>
-  </ol>
+	<h1>
+	Item
+	<small>Home</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="?page=crud/item/create"><i class="fa fa-plus"></i> Add New</a></li>
+	</ol>
 </section>
 <section class="content">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Data Tables</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-          	<div class="row">
-          		<div class="col-sm-6">
-          			<div class="dataTables_length" id="example1_length">
-          				<label>Show 
-          					<select name="example1_length" aria-controls="example1" class="form-control input-sm">
-          						<option value="10">10</option><option value="25">25</option>
-          						<option value="50">50</option><option value="100">100</option>
-          					</select>
-        					entries</label>
-          			</div>
-          		</div>
-		          <div class="col-sm-6">
-			          <div id="example1_filter" class="dataTables_filter">
-				          <label>Search:
-				          <input type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
-				          </label>
-			          </div>
-		          </div>
-          	</div>
-          	<div class="row">
-          		<div class="col-sm-12">
-          			<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-            			<thead>
-            				<tr role="row">
-            					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 10%;">
-            						No.
-          						</th>
-            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 70%;">
-            						Browser	
-          						</th>
-          						<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Browser: activate to sort column ascending" style="width: 20%;">
-            						Action
-          						</th>
-  							</tr>
-            			</thead>
-            			<tbody>
-				            <tr role="row" class="odd">
-				              <td><?=$i++?></td>
-				              <td class="sorting_1"><?=$show["name"]?></td>
-				              <td class="sorting_1">
-				              	<a href="?page=crud/item/update&id=<?=$itm['id_category']?>">
-				              		<i class="fa fa-edit"></i><span> Edit</span>
-				              	</a>
-				              </td>
-				              <td class="sorting_1">
-				              	<a href="pages/crud/item/machine.php?action=delete&id=<?=$itm['id_category']?>">
-				              		<i class="fa fa-close"></i><span> Delete</span>
-				              	</a>
-				              </td>
-				            </tr>
-         			    </tbody>
-			          </table>
-			        </div>
-			      </div>
-			      <div class="row">
-			  			<div class="col-sm-7">
-			  				<div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-			  					<ul class="pagination">
-			  						<li class="paginate_button previous disabled" id="example1_previous">
-			  							<a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">
-			  								Previous
-											</a>
-										</li>
-										<li class="paginate_button active">
-											<a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">
-												1
-											</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">
-												2
-											</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">
-												3
-											</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">
-												4
-											</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">
-												5
-											</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">
-												6
-											</a>
-										</li>
-										<li class="paginate_button next" id="example1_next">
-											<a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">
-												Next
-											</a>
-										</li>
-									</ul>
-								</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box-header">
+				<h3 class="box-title">Data Tables</h3>
+			</div>
+			<!-- /.box-header -->
+			<div class="box-body">
+				<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="dataTables_length" id="example1_length">
+								<label>Show
+									<select name="example1_length" aria-controls="example1" class="form-control input-sm">
+										<option value="10">10</option><option value="25">25</option>
+										<option value="50">50</option><option value="100">100</option>
+									</select>
+								entries</label>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div id="example1_filter" class="dataTables_filter">
+								<label>Search:
+									<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
+								</label>
 							</div>
 						</div>
 					</div>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
+					<div class="row">
+						<div class="col-sm-12">
+							<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+								<thead>
+									<tr role="row">
+										<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 2%;text-align:center;">
+											No.
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 10%;text-align:center;">
+											Browser
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 18%;text-align:center;">
+											Gambar
+										</th>
+										
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Browser: activate to sort column ascending" style="width: 10%; text-align:center;">
+											Harga
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 10%;text-align:center;">
+											Stock
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 10%;text-align:center;">
+											Kadaluarsa
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 10%;text-align:center;">
+											Barcode
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="2" aria-label="Browser: activate to sort column ascending" style="width: 20%;text-align:center;">
+											Action
+										</th>
+									</tr>
+									<tr>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 5%;text-align:center;">
+											Harga Pokok
+										</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 5%;text-align:center;">
+											Harga Jual
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										while ($show=$res->fetch()) {
+									?>
+									<tr role="row" class="odd">
+										<td><?=$i++?></td>
+										<td class="sorting_1"><?=$show["name"]?></td>
+										<td class="sorting_1"><img class="img-circle" alt="<?=$show['picture']?>" src="<?=$show['picture']?>"></td>
+										<td class="sorting_1">Rp<?=$show["hpp"]?>,-</td>
+										<td class="sorting_1">Rp<?=$show["hju"]?>,-</td>
+										<td class="sorting_1"><?=$show["stock"]?></td>
+										<td class="sorting_1"><?=$show["kadaluarsa"]?></td>
+										<td class="sorting_1"><?=$show["barcode"]?></td>
+										<td class="sorting_1">
+											<a href="?page=crud/item/update&id=<?=md5($itm['id_category'])?>">
+												<i class="fa fa-edit"></i><span> Edit</span>
+											</a>
+										</td>
+										<td class="sorting_1"	>
+											<a href="pages/crud/item/machine.php?action=delete&id=<?=$itm['id_category']?>">
+												<i class="fa fa-close"></i><span> Delete</span>
+											</a>
+										</td>
+									</tr>
+									<?php
+													}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-7">
+							<div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+								<ul class="pagination">
+									<li class="paginate_button previous disabled" id="example1_previous">
+										<a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">
+											Previous
+										</a>
+									</li>
+									<li class="paginate_button active">
+										<a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">
+											1
+										</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">
+											2
+										</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">
+											3
+										</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">
+											4
+										</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">
+											5
+										</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">
+											6
+										</a>
+									</li>
+									<li class="paginate_button next" id="example1_next">
+										<a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">
+											Next
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.box-body -->
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
 </section>

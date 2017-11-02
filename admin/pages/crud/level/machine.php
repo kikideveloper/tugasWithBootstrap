@@ -18,6 +18,6 @@
 	if ($action == "del") {
 		$id=$java->get('id','');
 		$eng->delete("category where id_category='$id'");
-		$java->redirect("../../../index.php?page=crud/category/index");	
+			$java->redirect("../../../index.php?page=crud/category/index");
 	}
 ?>

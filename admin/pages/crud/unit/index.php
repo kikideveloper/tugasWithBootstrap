@@ -4,7 +4,7 @@
     <small>Home</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="?page=crud/item/create"><i class="fa fa-plus"></i> Add New</a></li>
+    <li><a href="?page=crud/unit/create"><i class="fa fa-plus"></i> Add New</a></li>
   </ol>
 </section>
 <section class="content">
@@ -44,8 +44,11 @@
             					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 10%;">
             						No.
           						</th>
-            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 70%;">
-            						Browser	
+            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 30%;">
+            						Name
+          						</th>
+            					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 40%;">
+            						Information
           						</th>
           						<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Browser: activate to sort column ascending" style="width: 20%;">
             						Action
@@ -55,13 +58,14 @@
             			<tbody>
 			            <?php
 			            	$i=1;
-			            	$q="SELECT * FROM category";
+			            	$q="SELECT * FROM unit";
 			            	$data = $eng->getResult($q,null);
 			            	foreach ($data as $itm) {
 		            	?>
 				            <tr role="row" class="odd">
 				              <td><?=$i++?></td>
 				              <td class="sorting_1"><?=$itm["name"]?></td>
+				              <td class="sorting_1"><?=$itm["information"]?></td>
 				              <td class="sorting_1">
 				              	<a href="?page=crud/item/update&id=<?=$itm['id_category']?>">
 				              		<i class="fa fa-edit"></i><span> Edit</span>

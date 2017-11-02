@@ -15,9 +15,9 @@
 		$java->alert("Data Anda berhasil di ubah!!");
 		$java->redirect("../../../index.php?page=crud/category/index");
 	}
-	if ($action == "del") {
+	if ($action == "delete") {
 		$id=$java->get('id','');
 		$eng->delete("category where id_category='$id'");
-		$java->redirect("../../../index.php?page=crud/category/index");	
+		$java->redirect("../../../index.php?page=crud/category/index");
 	}
 ?>

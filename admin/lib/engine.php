@@ -5,7 +5,6 @@
 class Engine
 {
 	private $db;
-
 	function __construct()
 	{
 		try {
@@ -16,7 +15,6 @@ class Engine
 		}
 		return $this->db;
 	}
-
 	public function query($q)
 	{
 		try {
@@ -30,20 +28,17 @@ class Engine
 		{
 			try{
 				$result = $this->db->prepare($sql);
-				$result->execute($param);	
+					$result->execute($param);
 			}catch(Exception $e){
 				die($e->getMessage());
 			}
 		}
-
 	public function getField($sql, $param)
 	{
 		try {
 			$result = $this->db->prepare($sql);
 			$result->execute($param);
-
 			$row = $result->fetch();
-
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -54,7 +49,6 @@ class Engine
 		try {
 			$result = $this->db->prepare($sql);
 			$result->execute($param);
-
 			$row = $result->fetch();
 		} catch (Exception $e) {
 			die($e->getMessage());
@@ -69,8 +63,7 @@ class Engine
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
-
-		return $result; 
+		return $result;
 	}
 	public function sant($type)
 	{
