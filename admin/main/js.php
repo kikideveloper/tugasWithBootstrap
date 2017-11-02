@@ -51,6 +51,14 @@
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript">
 $(function () {
+    $("barang").dataTable({
+      'paging'        : true,
+      'lengthChange'  : false,
+      'searcing'      : false,
+      'ordering'      : true,
+      'info'          : true,
+      'autoWidth'     : false
+    })
     //Initialize Select2 Elements
     $('.select2').select2()
 
@@ -116,6 +124,7 @@ $(function () {
       showInputs: false
     })
 
+})
     function PreviewImage() {
       var oFReader = new FileReader();
       oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
@@ -124,4 +133,16 @@ $(function () {
         document.getElementById("uploadPreview").src = oFREvent.target.result;
       };
 };
+function addItm($frm) {
+  $.ajax({
+    url: 'lib/cart.php?action=add',
+    type: 'post',
+    dataType: $($frm).serialize(),
+    success:function(data) {
+      //$(".data-item").load("lib/v_cart.php");
+      alert(data);
+    }
+  })
+  
+}
 </script>

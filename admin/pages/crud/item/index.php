@@ -15,7 +15,7 @@
 		// $java->alert("Category not found!!");
 		// $java->redirect("index.php");
 	// }
-	$res=$eng->query("SELECT * FROM item I,category C,unit U WHERE I.id_category=C.id_category, I.id_unit=U.id_unit");
+	$res=$eng->query("SELECT * FROM item i,category c,unit u WHERE i.id_category=c.id_category, i.id_unit=u.id_unit");
 ?>
 <section class="content-header">
 	<h1>

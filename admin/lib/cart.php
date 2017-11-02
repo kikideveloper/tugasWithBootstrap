@@ -6,10 +6,11 @@ if ($action) {
 	switch ($action) {
 		case 'add':
 			if (!empty($_SESSION["cart"][$id_item])) {
-				$val = array();
-				$_SESSION["cart"][$id] += $amount;
+				$val = array($_SESSION["cart"][$id_item][0]+$amount,$kadaluarsa,$price);
+				$_SESSION["cart"][$id] = $val;
 			}else {
-				$_SESSION["cart"][$id] = $amount;
+				$val = array($amount,$kadaluarsa,$price);
+				$_SESSION["cart"][$id] = $val;
 			}
 			break;
 		case 'up':

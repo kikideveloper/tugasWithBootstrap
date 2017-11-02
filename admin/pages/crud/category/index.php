@@ -127,6 +127,7 @@
 									</ul>
 								</div>
 							</div>
+						<button class="btn btn-primary pull-right">add</button>
 						</div>
 					</div>
 				</div>
